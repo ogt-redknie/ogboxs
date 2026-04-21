@@ -2,6 +2,7 @@
 const isCapacitor = process.env.BUILD_TARGET === 'capacitor';
 
 const nextConfig = {
+ outputFileTracingRoot: process.cwd(), 
   output: 'export',
   images: {
     unoptimized: true,
