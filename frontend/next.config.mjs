@@ -1,17 +1,21 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 在 ES Module 中模拟 __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 解决 monorepo 中文件追踪问题（关键！）
-  outputFileTracingRoot: path.join(__dirname, '../../'),   // 从 frontend/ 向上两级到仓库根
+  // 解决 monorepo + Vercel 路径追踪问题（关键修复）
+  outputFileTracingRoot: path.join(__dirname, '../../'),
 
-  // 如果你后续要做 Capacitor 移动端打包，可以先不加 output: 'export'
-  // output: 'export',   // 暂时注释掉
+  // 如果你暂时不需要静态导出（Capacitor 移动端），先不要开启下面这行
+  // output: 'export',
 
-  // 可选：关闭实验性构建模式（日志里出现了 --experimental-build-mode generate，可能引起问题）
-  // experimental: {
-  //   buildMode: undefined,   // 如果有的话可以试着去掉
-  // },
+  // 其他常用配置（可根据需要添加）
+  reactStrictMode: true,
+  swcMinify: true,
 };
 
 export default nextConfig;
