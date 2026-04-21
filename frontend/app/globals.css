@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 263 70% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 100% 50%;
+    --radius: 0.75rem;
+    --chart-1: 220 100% 50%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 263 70% 58%;
+    --chart-4: 43 96% 56%;
+    --chart-5: 0 84% 60%;
+
+    --ogbo-blue: #0066ff;
+    --ogbo-blue-hover: #0052cc;
+    --ogbo-blue-active: #003d99;
+    --ogbo-purple: #7c3aed;
+    --ogbo-green: #10b981;
+    --ogbo-orange: #f59e0b;
+    --ogbo-red: #ef4444;
+    --ogbo-market-up: #10b981;
+    --ogbo-market-down: #ef4444;
+    --ogbo-market-neutral: #6b7280;
+
+    --safe-top: 0px;
+    --safe-bottom: 0px;
+
+    /* ── Page top safe-area offsets ──────────────────────────────────
+       Adjust any of the three base values; --page-top-floor updates
+       automatically via CSS min(). Future pages use --page-top-floor. */
+    --page-top-login:    32px;   /* Login general pages (WelcomeView / BackHeader) */
+    --page-top-topbar:   35px;   /* Main app TopBar                                */
+    --page-top-password: 45px;   /* PasswordLoginView                              */
+    --page-top-floor: min(var(--page-top-login), var(--page-top-topbar), var(--page-top-password));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Safe area utilities for mobile devices */
+  .safe-area-top {
+    padding-top: var(--safe-top, env(safe-area-inset-top, 0px));
+  }
+  .safe-area-bottom {
+    padding-bottom: var(--safe-bottom, env(safe-area-inset-bottom, 0px));
+  }
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left, 0px);
+  }
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #0066ff 0%, #7c3aed 100%);
+  }
+  .gradient-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .gradient-success {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  }
+  .gradient-green {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  }
+  .gradient-orange {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  }
+  .gradient-pink {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+  }
+  .gradient-cyan {
+    background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);
+  }
+  .shadow-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .shadow-card-hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+  .shadow-fab {
+    box-shadow: 0 8px 16px rgba(0, 102, 255, 0.3);
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -1,0 +1,53 @@
+import React from "react"
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import WalletProvider from "@/components/WalletProvider";
+
+export const metadata: Metadata = {
+  title: "OGBOX - Web3 Social Wallet",
+  description: "OGBOX Web3 Wallet + Social Application - Your gateway to the decentralized world",
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="zh-CN">
+      <head>
+        {/* Inline script: runs synchronously before first paint.
+            On iOS (WKWebView), env(safe-area-inset-top) is available immediately,
+            so we set --safe-top here to avoid any flash.
+            On Android, overlay=false means WebView starts below the status bar,
+            so --safe-top stays 0px (the CSS default). */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)){document.documentElement.style.setProperty('--safe-top','env(safe-area-inset-top,0px)');document.documentElement.style.setProperty('--safe-bottom','env(safe-area-inset-bottom,0px)')}})();` }} />
+      </head>
+      <body className="font-sans antialiased">
+        <WalletProvider>
+          {children}
+        </WalletProvider>
+      </body>
+    </html>
+  );
+}
